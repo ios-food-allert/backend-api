@@ -32,6 +32,7 @@ public class MessageResponseConverter {
     			FoodAllertEntity faEntity = new FoodAllertEntity();
     			
 				faEntity.setEntity(messageResponse.getEntities().get(i).getEntity());
+				faEntity.setEntity_es(getSpanish(faEntity.getEntity()));
 				faEntity.setConfidence(messageResponse.getEntities().get(i).getConfidence());
 				faEntity.setLocation(messageResponse.getEntities().get(i).getLocation());
 				faEntity.setValue(messageResponse.getEntities().get(i).getValue());
@@ -57,6 +58,10 @@ public class MessageResponseConverter {
 		return newMessageResponse;
 	}
 
+	private static String getSpanish(String entity) {
+		return Allergen.getSpanish(entity);
+	}
+	
 	private static String getEntityImageURL(String entity) {
 		return Allergen.getAllergenImageURL(entity);
 	}
