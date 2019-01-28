@@ -12,6 +12,7 @@ import java.util.List;
 public class FoodAllertEntity  {
 	
 	private String entity;
+	private String entity_es;
 	private List<Long> location;
 	private String value;
 	private Double confidence;
@@ -22,6 +23,12 @@ public class FoodAllertEntity  {
 	}
 	public void setEntity(String entity) {
 		this.entity = entity;
+	}
+	public String getEntity_es() {
+		return entity_es;
+	}
+	public void setEntity_es(String entity_es) {
+		this.entity_es = entity_es;
 	}
 	public List<Long> getLocation() {
 		return location;
