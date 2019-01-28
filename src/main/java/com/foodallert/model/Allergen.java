@@ -9,26 +9,42 @@ package com.foodallert.model;
  */
 public enum Allergen {
 	
-	EGG("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-eggs-filled-100.png"),
-	FISH("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-fish-food-filled-100.png"),
-	MILK("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-tetra-pak-filled-100.png"),
-	OTHER_ALLERGENS("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-eggs-filled-100.png"),
-	PEANUT("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-peanuts-filled-100.png"),
-	SHELLFISH("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-shrimp-and-lobster-filled-100.png"),
-	SOY("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-soy-filled-100.png"),
-	TREE_NUT("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-nut-filled-100.png"),
-	WHEAT("https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-wheat-filled-100.png");
+	EGG("Huevo", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-eggs-filled-100.png"),
+	FISH("Pescado", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-fish-food-filled-100.png"),
+	MILK("Leche", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-tetra-pak-filled-100.png"),
+	OTHER_ALLERGENS("Otros alergenos", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-eggs-filled-100.png"),
+	PEANUT("Cacahuate", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-peanuts-filled-100.png"),
+	SHELLFISH("Mariscos", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-shrimp-and-lobster-filled-100.png"),
+	SOY("Soya", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-soy-filled-100.png"),
+	TREE_NUT("Nueces", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-nut-filled-100.png"),
+	WHEAT("Gluten", "https://api-fa-backend.1d35.starter-us-east-1.openshiftapps.com/images/307672-wheat-filled-100.png");
 	
+	private String spanish;
 	private String imageURL;
 	
-	private Allergen(String imageURL) {
+	private Allergen(String spanish, String imageURL) {
+		this.spanish = spanish;
 		this.imageURL = imageURL;
 	}
 
+	public String getSpanish() {
+		return spanish;
+	}
+	
 	public String getImageURL() {
 		return imageURL;
 	}
 
+	public static String getSpanish(String text) {
+		for(Allergen allergen : Allergen.values()) {
+			if(allergen.toString().equals(text.toUpperCase())) {
+				return allergen.getSpanish();
+			}
+		}
+		
+		return "Otros alergenos";
+	}
+	
 	public static String getAllergenImageURL(String text) {
 		for(Allergen allergen : Allergen.values()) {
 			if(allergen.toString().equals(text.toUpperCase())) {
