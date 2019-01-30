@@ -56,3 +56,4 @@ public class WatsonAssistantService {
 		return articles;
 	}
 }
+
